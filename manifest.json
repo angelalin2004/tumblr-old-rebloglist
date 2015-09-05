@@ -1,13 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "A Tumblr Old ReblogList",
+  "name": "Tumblr Old ReblogList",
   "description": "Staff makes bad decisions",
   "version": "1.0",
-
-  "browser_action": {
-    "default_icon": "icon.png"
-  },
 
   "background":
   {

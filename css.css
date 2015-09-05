@@ -1,9 +1,22 @@
-.test {
+.newList {
 	/* background: #EEEEEE; */
 	
 	position: relative;
 	left: 20px;
 }
+.deactivated {
+
+	text-decoration: underline;
+	/*
+	border-bottom: 1px;
+	border-color: red;
+	*/
+}
+.reblogTitle {
+	position: relative;
+	left: 20px;
+}
+
 /*
 .reblog-avatar {
 	display: none !important;
