@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+
+  "name": "A Tumblr Old ReblogList",
+  "description": "Staff makes bad decisions",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+
+  "background":
+  {
+    "scripts": ["jquery/jquery-1.11.3.js"]
+  },
+
+  "content_scripts": 
+  [
+    {
+      "matches": ["https://www.tumblr.com/*"],
+      "js": ["jquery/jquery-1.11.3.js", "javascript.js"],
+      "css": ["css.css"]
+    }
+  ]
+}
