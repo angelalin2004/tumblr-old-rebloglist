@@ -3,13 +3,8 @@
 
   "name": "Tumblr Posts Fix",
   "description": "Staff makes bad decisions",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "icons" : { "128" : "icon128.png" },
-
-  "background":
-  {
-    "scripts": ["jquery/jquery-1.11.3.js"]
-  },
 
   "content_scripts": 
   [

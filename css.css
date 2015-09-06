@@ -16,7 +16,10 @@
 	position: relative;
 	left: 20px;
 }
-
+.contributed-no-list {
+	position: relative;
+	left: 20px;
+}
 /*
 .reblog-avatar {
 	display: none !important;

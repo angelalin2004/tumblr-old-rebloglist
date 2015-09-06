@@ -1,3 +1,5 @@
+//var startTime = new Date().getTime();
+
 $("div.reblog-list").after("<p class='newList insert-here'></p>");
 $(".newList").width(function(n, c){
     return c - 40;
@@ -65,6 +67,7 @@ for (var i = 0; i < reblogLists.length; i++) {
 
 		
 	}
+	// TODO: fix source and tags problem
 	/*
 	var sourceFooter = reblogLists[i].parentNode.parentNode.parentNode.getElementsByClassName("post-source-footer");
 	if (sourceFooter.length > 0) {
@@ -86,8 +89,25 @@ for (var i = 0; i < reblogLists.length; i++) {
 }
 
 $(".reblog-list").remove();
-//$(".newList").addClass("reblog-list");
 
+// fixes title width
 $(".reblogTitle").width(function(n, c){
-	return c - 20;
+	return c - 30;
 });
+
+// when there's no "reblog-list" but there's a "reblog-list-item contributed-content"
+var contributedContent = document.querySelectorAll(".contributed-content");
+if (contributedContent.length > 0) {
+	for (var m = 0; m < contributedContent.length; m++) {
+		if ($(contributedContent[m].parentNode).hasClass("post_content_inner")) {
+			var comment = contributedContent[m].getElementsByClassName("reblog-content")[0].innerHTML;
+			var blockquoteMargin = "style='margin-bottom: 0px;'";
+			$(contributedContent[m]).after("<div class='insert-here contributed-no-list' " + blockquoteMargin + ">" 
+				+ comment + "</div>");
+			$(contributedContent[m]).remove();	
+		}
+	}
+}
+
+//var endTime = new Date().getTime();
+//console.log("Tumblr Posts Fix finished in " + (endTime-startTime) + "ms");
