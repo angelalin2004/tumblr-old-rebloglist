@@ -1,9 +1,10 @@
 {
   "manifest_version": 2,
 
-  "name": "Tumblr Old ReblogList",
+  "name": "Tumblr Posts Fix",
   "description": "Staff makes bad decisions",
-  "version": "1.0",
+  "version": "1.0.4",
+  "icons" : { "128" : "icon128.png" },
 
   "background":
   {

@@ -6,6 +6,21 @@ $(".newList").width(function(n, c){
 var reblogLists = document.querySelectorAll(".reblog-list");
 var newLists = document.querySelectorAll(".newList");
 for (var i = 0; i < reblogLists.length; i++) {
+	var contributedContent = reblogLists[i].parentNode.getElementsByClassName("contributed-content");
+	var contributed = false;
+	
+	if (contributedContent.length > 0) {
+		contributed = true;
+		
+		for ( var m = contributedContent.length-1; m >=0; m--) {
+			var comment = contributedContent[m].getElementsByClassName("reblog-content")[0].innerHTML;
+			var insertHeres = reblogLists[i].parentNode.getElementsByClassName("insert-here");
+			var blockquoteMargin = "style='margin-bottom: 0px;'";
+			insertHeres[insertHeres.length-1].innerHTML = "<p class='insert-here' " + blockquoteMargin + ">" 
+				+ comment + "</p>" + insertHeres[insertHeres.length-1].innerHTML;
+			$(contributedContent[m]).remove();
+		}
+	}
 	var reblogItems = reblogLists[i].getElementsByClassName("reblog-list-item");
 	for ( var j = reblogItems.length - 1; j >= 0; j-- ) {
 		// if there is a header, insert it before the new reblog list
@@ -13,6 +28,9 @@ for (var i = 0; i < reblogLists.length; i++) {
 		if (reblogTitles.length > 0) {
 			for (var k = reblogTitles.length-1; k >= 0; k--) {
 				$(reblogLists[i]).after("<div class='reblog-title reblogTitle'>" + reblogTitles[k].textContent + "</div>");
+			}
+			for (var k = reblogTitles.length-1; k >= 0; k--) {
+				$(reblogTitles[k]).remove();
 			}
 		}
 
@@ -31,16 +49,38 @@ for (var i = 0; i < reblogLists.length; i++) {
 			usernameString = "<a href='" + usernameLink + "'>" + username + "</a>:";
 			
 		}
-		var comment = reblogItems[j].getElementsByClassName("reblog-content")[0].innerHTML;
-		var blockquoteMargin = (j==reblogItems.length-1) ? "style='margin-bottom: 0px;'" : "";
 		var insertHeres = reblogLists[i].parentNode.getElementsByClassName("insert-here");
-		insertHeres[insertHeres.length-1].innerHTML = "<p>" + usernameString + 
-			"<blockquote class='insert-here' " + blockquoteMargin + ">" + comment + 
-			"</blockquote></p>" + insertHeres[insertHeres.length-1].innerHTML;
+		var comment = "";
+		if (reblogItems[j].getElementsByClassName("reblog-content").length > 0) {
+			comment = reblogItems[j].getElementsByClassName("reblog-content")[0].innerHTML;
+			// if there's a comment, add user, blockquote, and comment
+			var blockquoteMargin = (j==reblogItems.length-1 && contributed==false) ? "style='margin-bottom: 0px;'" : "";
+			insertHeres[insertHeres.length-1].innerHTML = "<p>" + usernameString + 
+				"<blockquote class='insert-here' " + blockquoteMargin + ">" + comment + 
+				"</blockquote></p>" + insertHeres[insertHeres.length-1].innerHTML;
+		}
+		else {
+			// if there's no comment, don't add anything
+		}
+
+		
 	}
-	// reduce source footer margin
 	/*
-	var sourceFooter = reblogLists[i].parentNode.getElementsByClassName("post-source-footer")[0];
+	var sourceFooter = reblogLists[i].parentNode.parentNode.parentNode.getElementsByClassName("post-source-footer");
+	if (sourceFooter.length > 0) {
+		$(sourceFooter).css("position", "absolute");
+		//$(sourceFooter).css("top", "5px");
+		var postTags = reblogLists[i].parentNode.parentNode.parentNode.getElementsByClassName("post_tags")[0];
+		$(postTags).css("position", "absolute");
+		var width = $(sourceFooter).width();
+		console.log("width: " + width);
+		width = width + "px";
+		console.log(width);
+		$(postTags).css("left", width);
+		console.log($(postTags).css("left"));
+		$(postTags).css("margin-top", "-10px !important");
+		console.log("got here");
+	}
 	$(sourceFooter).css("margin-top","-15px");
 	*/
 }
