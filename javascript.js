@@ -42,11 +42,9 @@ for (var i = 0; i < reblogLists.length; i++) {
 		var usernameString;
 		// deactivated user case
 		if ($(userTag).hasClass("inactive")) {
-			usernameString = "<span class='deactivated'><u>" + 
-				userTag.firstChild.nodeValue + "</u>:" +
-				// commenting out Deactivated status because display will
-				// not change
-				//"<span class='deactivated-status'>Deactivated</span>" +
+			usernameString = "<span class='deactivated'><u class='deactivated-user'>" 
+				+ userTag.firstChild.nodeValue + "</u>:" +
+				"<span class='deactivated-status'></span>" +
 				"</span>";
 		}
 		else {
@@ -121,23 +119,23 @@ $(".contributed-no-list").width(function(n, c){
 	return c - 40;
 });
 
-/* doesn't work, may be incompatible with Tumblr's framework
-$(document).ready(function(){
-	$(".deactivated").mouseenter(function(event){
-	  $("#deactivated-status").css("display","inline");
-	});
-
-	$(".deactivated").mouseleave(function(event){
-	  $("#deactivated-status").css("display","none");
-	});
-});
-*/
-
 /* go back to this if the above has any issues
 $(".insert-here.contributed-no-list").width(function(n, c){
 	return c - 20;
 });
 */
+
+$(document).ready(function(){
+	$(".deactivated").mouseenter(function(event){
+	  this.querySelectorAll(".deactivated-status")[0].innerHTML = " Deactivated";
+	});
+	
+	$(".deactivated").mouseleave(function(event){
+	  this.querySelectorAll(".deactivated-status")[0].innerHTML = "";
+	  console.log("left");
+	});
+	
+});
 
 //var endTime = new Date().getTime();
 //console.log("Tumblr Posts Fix finished in " + (endTime-startTime) + "ms");

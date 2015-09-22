@@ -4,18 +4,9 @@
 	position: relative;
 	left: 20px;
 }
-.deactivated {
-	/*
-	text-decoration: underline;
-	
-	border-bottom: 1px;
-	border-color: red;
-	*/
-}
-.deactivated-status {
-	
-	display: none;
-	
+.deactivated {	
+	border-bottom: 1px !important;
+	border-color: red !important;
 }
 .reblogTitle {
 	position: relative;
