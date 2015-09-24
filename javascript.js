@@ -8,9 +8,11 @@ $(".newList").width(function(n, c){
 var reblogLists = document.querySelectorAll(".reblog-list");
 var newLists = document.querySelectorAll(".newList");
 for (var i = 0; i < reblogLists.length; i++) {
+
+	// if the reblogger contributed a comment to an existing reblog-list
+	// then add it first
 	var contributedContent = reblogLists[i].parentNode.getElementsByClassName("contributed-content");
 	var contributed = false;
-	
 	if (contributedContent.length > 0) {
 		contributed = true;
 		
@@ -24,6 +26,7 @@ for (var i = 0; i < reblogLists.length; i++) {
 			$(contributedContent[m]).remove();
 		}
 	}
+
 	var reblogItems = reblogLists[i].getElementsByClassName("reblog-list-item");
 	for ( var j = reblogItems.length - 1; j >= 0; j-- ) {
 		// if there is a header, insert it before the new reblog list
@@ -104,7 +107,8 @@ var contributedContent = document.querySelectorAll(".contributed-content");
 if (contributedContent.length > 0) {
 	for (var m = 0; m < contributedContent.length; m++) {
 		if ($(contributedContent[m].parentNode).hasClass("post_content_inner") ||
-			$(contributedContent[m].parentNode).hasClass("post_container")) {
+			$(contributedContent[m].parentNode).hasClass("post_container") ||
+			$(contributedContent[m].parentNode).hasClass("answer")) {
 			var comment = contributedContent[m].getElementsByClassName("reblog-content")[0].innerHTML;
 			var blockquoteMargin = "style='margin-bottom: 0px;'";
 			$(contributedContent[m]).after(
@@ -119,7 +123,8 @@ $(".contributed-no-list").width(function(n, c){
 	return c - 40;
 });
 
-/* go back to this if the above has any issues
+// go back to this if the above has any issues
+/*
 $(".insert-here.contributed-no-list").width(function(n, c){
 	return c - 20;
 });
@@ -132,10 +137,11 @@ $(document).ready(function(){
 	
 	$(".deactivated").mouseleave(function(event){
 	  this.querySelectorAll(".deactivated-status")[0].innerHTML = "";
-	  console.log("left");
 	});
-	
 });
 
-//var endTime = new Date().getTime();
-//console.log("Tumblr Posts Fix finished in " + (endTime-startTime) + "ms");
+// code to test the extension's performance
+/*
+var endTime = new Date().getTime();
+console.log("Tumblr Posts Fix finished in " + (endTime-startTime) + "ms");
+*/
