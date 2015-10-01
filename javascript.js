@@ -1,5 +1,10 @@
 //var startTime = new Date().getTime();
 
+
+document.addEventListener("DOMNodeInserted", function (ev) {
+	//console.log("New element detected");
+}, false);
+
 $("div.reblog-list").after("<p class='newList insert-here'></p>");
 $(".newList").width(function(n, c){
     return c - 40;
@@ -131,6 +136,7 @@ $(".insert-here.contributed-no-list").width(function(n, c){
 */
 
 $(document).ready(function(){
+	
 	$(".deactivated").mouseenter(function(event){
 	  this.querySelectorAll(".deactivated-status")[0].innerHTML = " Deactivated";
 	});
